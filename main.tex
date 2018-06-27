@@ -1,0 +1,72 @@
+\documentclass[12pt, twoside]{article}
+
+\title{Page Rank on neuromorphic \\SpiNNaker hardware}
+\author{Louis Blin (CID: 00963306)}
+
+% include files that load packages and define macros
+\input{includes/includes} % various packages needed for maths etc.
+\input{includes/notation} % short-hand notation and macros
+
+\setlength{\parindent}{5ex}
+
+%%% CRITERIA - What is expected
+% Are the contributions clear? 
+% Motivation for the work? 
+% Does it set the scene well in terms of introduction, background and motivation? 
+% Can you follow what they have done, how and why by reading the main body? 
+% Are any results well explained and easy to interpret?
+% Are the strengths and weaknesses presented appropriately?
+% Are there meaningful conclusions and is there a sensible programme of future work?
+% Does it have an appropriate level of detail and is it of an appropriate size? 
+% Does the report cite the relevant literature and are the sources cited correctly in the bibliography? 
+% ==> If the project is a first class project, then the report should ideally be a first class report. 
+
+% TODO: screenshot images of the form 'Image taken from [X]'.
+
+
+\begin{document}
+\input{title/title.tex}
+
+\newpage
+\begin{abstract}
+% Half a page summarising what has been achieved. Should be roughly understandable for non technical people
+
+The rise of artificial intelligence applications during the past years has led to an increasing demand for new specialised hardware. Consequently, a European-wide research initiative has built the Spiking Neural Network Architecture (SpiNNaker) machine, a neuromorphic computer with a biology-inspired hardware design. This novel design has allowed for faithful neural simulations, but also has revealed new performance opportunities for other problem classes, such as graph processing with Page Rank as a benchmark. Indeed, a SpiNNaker machine can hold up to a million cores and is wired with very low latency inter-core links, which are optimised for transfers of very large numbers of small-sized data packets. In this project, we take these hardware specificities as opportunities by porting Page Rank to SpiNNaker to investigate its scaling potential on the machine compared to a regular personal computer implementation. The contributions of this project are twofold: (a) we built a generic user-friendly framework that supports Page Rank simulations on SpiNNaker (b) we demonstrated that Page Rank under SpiNNaker brings a speed-up of over a factor of 3.
+
+
+%With the rise of artificial intelligence applications during the past years, demand for new specialised hardware has followed. In response, a European-wide research initiative has built the Spiking Neural Network Architecture (SpiNNaker) machine, a neuromorphic computer with a biology-inspired hardware design. This novel design not only supports neural simulations efficiently, but also uncovers new performance opportunities for other classes of problems, such as graph processing with Page Rank as a benchmark. Indeed, a SpiNNaker machine can hold up to a million cores and is wired with very low latency inter-core links, which are optimised for transfers of very large numbers of small-sized data packets. We take these hardware specificities as opportunities, by porting Page Rank to SpiNNaker and investigating its scaling potential on the machine compared to a regular personal computer implementation. The contributions of this project are twofold: (a) we build a generic user-friendly framework that supports Page Rank simulations on SpiNNaker (b) we demonstrate that Page Rank under SpiNNaker brings a speed-up of over a factor of 3.
+\end{abstract}
+
+
+
+\newpage
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+I would like to sincerely thank my supervisor Dr. Thomas Heinis for his continuous guidance throughout this project and allowing me to gain this exposure to the world of neuromorphic computing. Thank you also to Dr. Ahsan J. Awan and to Dr. Jana Giveca for their insightful pointers and thorough feedback concerning the writing this report. Finally, I am also grateful for the help I received from the academic staff of the Advanced Processor Technologies (APT) Research Group at the University of Manchester, who built the machine at the core of this project.
+\end{abstract}
+
+\newpage
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+\newpage
+\input{introduction/introduction.tex}
+\newpage
+\input{background/background.tex}
+\newpage
+\input{project/project.tex}
+\newpage
+\input{evaluation/evaluation.tex}
+\newpage
+\input{conclusion/conclusion.tex}
+\newpage
+\input{appendix/appendix.tex}
+
+\newpage
+%\bibliographystyle{alpha}
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+\bibliography{bibs/references}
+
+\end{document}

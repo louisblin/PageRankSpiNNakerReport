@@ -1,0 +1,14 @@
+\section{Conclusion}
+
+Overall, this project has been successful in demonstrating the scaling potential of SpiNNaker on a new algorithm, specifically Page Rank here, that had never been implemented on the machine before. This unveils new scaling opportunities for a whole problem class of graph-based algorithms with similar data-flow patterns, which are also expected to yield equivalent speed-ups. These algorithms are characterised by a large amount of state that needs to be maintained and shared throughout the computation. On a distributed system running on large graphs, exchanging that state between workers can rapidly become the bottleneck. The true edge of SpiNNaker is its low-latency interconnect between computational chips, that outperforms the standard end-to-end latency between servers of a cluster. We can only hope this proof of concept could motivate new research projects to investigate further how SpiNNaker could speed up graph-based algorithms. Indeed, some challenges remain unsolved after this project, such as limitations regarding the input graph size or the start-up cost of a simulation. \\
+
+The second contribution is related to tooling and supports the speed-up claim of this project. The Page Rank simulation framework built demonstrates how the paradigm of spiking neural networks can be mapped to Page Rank. However, this implementation is far from being a final solution for porting Page Rank to SpiNNaker and there is still plenty of opportunities for improvement. A follow-up project could work on these improvements, such as random back-off delays interleaving sent packets during network congestion or full asynchronous control flow by removing the main timer tick. Additionally, the framework could be made more generic to easily accommodate new graph-based algorithms, just as the research team from Markov Chain Monte Carlo Inference designed a generic framework to support Markov Chains on SpiNNaker \cite{markov-on-spinn}. \\
+
+
+% Future work
+%
+
+\footnotetext{Word count: 19,448 words} 
+
+
+
