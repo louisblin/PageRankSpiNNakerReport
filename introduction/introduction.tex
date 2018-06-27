@@ -2,7 +2,6 @@
 
 \subsection{Motivation}
 
-
 Almost 70 years after MADALINE \cite{adaline}, the first successful application of an artificial neural network that predicted and corrected bit streams traversing a phone line, the interest in artificial neural networks and Artificial Intelligence (AI) in general has grown exponentially. Parallel to the ever-improving research, industry applications of neural networks have been numerous, ranging from stock market predictions \cite{smp} to self-driving cars as early as 1989 \cite{alvinn}. These applications continue to create new business opportunities and thus investments have been flowing into AI over the past years at unprecedented levels. Moreover, this trend is predicted to continue with enterprise market revenue expected to be multiplied by 20 by 2025; see Fig.~\ref{fig:ai-proj}. As a direct consequence, research is prolific as observed in Fig.~\ref{fig:ai-papers} and funding has grown significantly. Indeed, The European Union (EU) is even encouraging these investments and is aiming to reach 20 billion euros worth of both public and private investments in AI in 2020. \cite{ai-invest}.
 
 \begin{figure}[!ht]
@@ -12,8 +11,7 @@ Almost 70 years after MADALINE \cite{adaline}, the first successful application 
        \caption{Enterprise AI market revenue 2016-2025 (image from \cite{ai-proj}).}
        \label{fig:ai-proj}
    \end{subfigure}%
-   ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-     %(or a blank line to force the subfigure onto a new line)
+   ~
    \begin{subfigure}[b]{0.5\textwidth}
        \includegraphics[width=\textwidth]{figures/ai-papers.png}
        \caption{AI papers published per year (image from \cite{ai-papers}).}
@@ -36,7 +34,9 @@ These machines present the following hardware characteristics that motivated thi
 
 \begin{itemize}
 \item \textbf{Manycore architecture}: as explained above, the density of cores on the board isthe main design feature inspired from the brain, which has around 86 billions of neural cells \cite{5th-summit}.
+
 \item \textbf{Communication model}: cores communicate through message passing, with messages being small datagrams sent over UDP/IP (72 bits maximum) \cite{ws6}. UDP/IP is a best-effort communication protocol and thus, the sender does not get any guaranty its messages were delivered. This design decision is at the heart of the network layer and is directly inspired from the brain, where a neuron does not get any reception acknowledgement when communicating with neighbouring neurons.
+
 \item \textbf{Communication throughput}: the expected benefit, gained from reducing the message size, was that a greater number of messages could be processed in a second. For cores on the same circuit board, their link can transfer up to 250M bit/s, meaning it could process up to 3M packet/s \cite{ws6}.
 \end{itemize}
 
@@ -49,11 +49,7 @@ All in all, a SpiNNaker machine can be viewed as a small supercomputer where cor
 
 \subsection{Objectives}
 
-% objectives
-
 In order to explore the new opportunities offered by SpiNNaker, we first define the mission statement of this project as follows:
-
-% EXPLAIN WHAT PAGE RAGE RANK
 
 \begin{quote}
 \textit{Investigate how we could leverage SpiNNaker for graph processing, using Page Rank as a benchmark, in the hope that it will give a better scalability potential than traditional computers.
@@ -82,12 +78,3 @@ The contributions from this project are twofold:
 
 
 Here, Page Rank is used as a proof-of-concept but this project aims to show that an entire class of algorithms are well suited for a port to SpiNNaker. The framework provided can easily be extended to support other graph-based algorithm with a data flow similar to Page Rank.
-
-
-% challenges
-
-
-%With the ever-growing need for computational power, the rise of parallel computing became inevitable to solve the scalability issue. From there, two diverging approaches to building clusters of computers were investigated. Firstly, companies like IBM worked on developing supercomputers, such as their Systems z13 with 141 CPUs, 5.5 Ghz core and 10TB of RAM. Although these options are fast and reliable, they come with a price tag in the millions and introduce a single-point of failure. This is when a second trend flourished in the world of distributed computing. Instead of building networks of several powerful computers, companies started creating huge clusters of cheap average-speed computers. The main benefits of this approach are the lower overall costs and increased uptime which made it the most popular way of building large clusters that scale. For instance according to the Apache Hadoop website, Yahoo! runs a 4,500 nodes, 100,000 CPUs Hadoop cluster \cite{apache-hadoop}. This illustrates how nowadays, the most computationally-intensive problems are solved as embarrassingly parallel algorithms. In particular, we are interested in those problems that require a significant amount of shared state to be solved. For example, network flow problems are solved in parallel by partitioning a network into sub-networks which state are correlated to their neighbour's. In such scenarios, inter-process communication rapidly becomes the bottleneck and finding a more efficient way to handle it could bring a non-trivial performance gain to whole classes of problems ranging from graph-based algorithms to numerical weather prediction. \\
-
-%This is where this project hopes to make a contribution to the existing research on the topic. We will investigate how a new type of hardware with a novel design, the \textit{Spiking Neural Network Architecture} (SpiNNaker) \cite{SpiNNaker-Project}, could solve these problems more efficiently. The new board was initially designed as part of the Human Brain Project (HBP) \cite{hbp} which is a European-wide initiative which strives to accelerate the fields of neuroscience, computing and brain-related  medicine. As opposed to traditional hardware, SpiNNaker features a manycore computer architecture with an incredibly fast interconnect between cores. This makes it a perfect candidate for massively-parallel data processing with considerable shared state. The fast interconnect should allow fast state exchanges whereas traditional supercomputer clusters would quickly become I/O bound. So far, the board has been solely used to run neuromorphic simulations of the brain by training neural networks on it, which is what it was made for in the first place, and has demonstrated a very satisfying performance. Quoting the leader of the neuromorphic platform Karlheinz Meier (Heidelberg University): "The Spinnaker machine is increasing the digital performance of the system by a factor of 10 times, with the same power consumption, by using advanced ARM cores and a very clever power management. It’s really an extremely powerful machine. It’s quite a revolution for many-core architectures in neural simulation, I have to say." \cite{hbp-jobs}.
-

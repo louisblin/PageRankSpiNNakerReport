@@ -41,14 +41,12 @@ When SpiNNaker is not allowed enough time to process packets during an each iter
         \includegraphics[width=\textwidth]{figures/packet_drop_vs_time_scale_factor-1.png}
         \caption{} \label{fig:graph11}
     \end{subfigure}%
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-      %(or a blank line to force the subfigure onto a new line)
+    ~
     \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{figures/packet_drop_vs_time_scale_factor-2.png}
         \caption{} \label{fig:graph12}
     \end{subfigure}
     \caption{Tuning hardware time step to avoid dropping packets}
-    %\caption{Minimising simulation running time while preventing packet drops}
     \label{fig:graph1}
 \end{figure} 
 
@@ -72,14 +70,12 @@ This first preliminary benchmark is interested in the performance trade-off ment
         \includegraphics[width=\textwidth]{figures/atoms_per_core_vs_running_time-1.png}
         \caption{} \label{fig:graph21}
     \end{subfigure}%
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-      %(or a blank line to force the subfigure onto a new line)
+    ~
     \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{figures/atoms_per_core_vs_running_time-2.png}
         \caption{} \label{fig:graph22}
     \end{subfigure}
     \caption{Tuning number of Page Rank vertices managed by a single core}
-    %\caption{Trade-off between running time and resource utilisation}
     \label{fig:graph2}
 \end{figure} 
 
@@ -99,14 +95,12 @@ Finally, this last experiment is the most important one as is compares the scali
         \includegraphics[width=\textwidth]{figures/graph_size_vs_running_time-1.png}
         \caption{} \label{fig:graph31}
     \end{subfigure}%
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-      %(or a blank line to force the subfigure onto a new line)
+    ~
     \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{figures/graph_size_vs_running_time-2.png}
         \caption{} \label{fig:graph32}
     \end{subfigure}
     \caption{Page Rank (PR) scalability of Python vs. SpiNNaker}
-    %\caption{Page Rank linear scaling on different architectures}
     \label{fig:graph3}
 \end{figure} 
 
@@ -123,39 +117,3 @@ Nonetheless, the implementation also has its limits which might discourage real-
 Moreover, the start-up time of simulations was not taken into account here. Indeed, the vast majority of the time is spent pre-processing the graph, the main bottleneck being the construction of the data specification which is loaded on SpiNNaker. Only long running algorithms would justify the upfront cost required by this pre-processing stage, and Page Rank usually converges in a few hundreds of iterations, which get computed relatively fast. Large graph inputs should be benchmarked to confirm if the start-up cost can be compensated by the running time speed-up on SpiNNaker. \\
 
 This perfectly introduces one of the problems of this evaluation, which is that it only ran on small machine. Although the results are encouraging for larger graphs, only a proper testing phase on a bigger machine could confirm the true scalability potential of this Page Rank simulation framework. This would also allow for the asynchronous model to be tested, as it is more likely iterations will get out of synchronisation on a bigger input graph mapped to a large number of cores.
-
-%Additionally, someone could critique the lack of diversity of graph topologies for this evaluation. !!!!!
-%
-%
-%evaluation is not complete some further tests would be required to confirm the scaling potential 
-%
-%- Async implementation should be demonstrated at scale
-%- No graph benchmarking, dense graph to maximise network usage. Should be confirmed by the graph generation step of a graph bencharming algorithm
-%tried on dense graph with uniform edge repartition.
-
-\newpage
-%% - MCMC approximates results, we have the exact results fixed-point ARM9 cores
-%
-%
-%Over the course of the project, the measure of success will be defined in the following way:
-%
-%\begin{enumerate}
-%\item \textbf{Neuromorphic-friendly problems}: the core objective and stepping stone to further work will rely on identifying a class of algorithmic problems that are more efficiently solved on neuromorphic hardware, such as SpiNNaker, compared to regular computers.
-%
-%Benchmarking such a system will be a non-trivial task and supposes we answer several questions: how do we compare performance on neuromorphic versus regular hardware? What weight do we give running time, hardware upfront cost (buying it), hardware operating cost (operating it, i.e. power consumption) in our measure of performance? To answer these questions, we will be using inspiration from the following papers:
-%
-%\begin{itemize}
-%\item Testing the SpiNNaker hardware in its early stages using the NEST spiking neural network simulator with similar computational resources. \cite{bench-spinnaker}
-%
-%\item The GAP benchmark suite that aims to standardise how graph processing techniques compare to each other. \cite{bench-gap}
-%
-%\item Benchmarking approach used for Markov chain Monte Carlo sampling on graphical models on the SpiNNaker neuromorphic architecture. \cite{markov-on-spinn}
-%
-%\end{itemize}
-%
-%
-%\item \textbf{Supporting SpiNNaker library}: building on the first milestone, the second step consists in developing a set of tools that will ease how this class of problems is ported to the SpiNNaker event-driven paradigm. Success will first rely on functional soundness and operability of the library, but will also have a focus on developer experience and ease of use. It should define a clear, simple, flexible and extensible API that would make it a reliable and useful tool for application developers.
-%
-%Furthermore, depending on timing and how successful this tool is, there is always room to accomplish more to getting in touch with the SpiNNaker software development team and investigate opportunities of collaboration related to my project. If it works well, they could potentially be interested in integrating it to their code base. That would be the most satisfactory outcome and would demonstrate the total success of the project.
-%
-%\end{enumerate}

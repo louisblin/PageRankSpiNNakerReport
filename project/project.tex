@@ -49,7 +49,6 @@ To cope with the issue of managing such a specific environment, it was decided t
 \end{figure}
 
 \subsubsection{Docker}
-% NOT AS A BLOG
 
 Docker is a leading platform offering containerisation services \cite{docker}, which are essentially a lighter version of virtual machines. Choosing Docker comes with the following benefits:
 
@@ -228,7 +227,6 @@ However, this solution is quite fragile for two reasons:
 
 
 Nonetheless, it can still allow the computation to recover from a few dropped packets, so it is kept for that purpose.
-%EXPLAIN Sample 4 nodes exmaple
 
 
 \subsection{Correctness considerations} \label{sec:resval}
@@ -239,11 +237,3 @@ To validate the correctness of the implementation above, a Python implementation
 Additionally, since any remote automated testing (on a continuous integration platform for instance) is hardly doable without the physical board, we opted for local robustness testing. A performance testing script was made to generate arbitrary large graphs and run Page Rank computations on it, verifying each time the results with the Python implementation. This script was run before pushing any commit, and provided a local solution to have a minimal continuous assessment of the correctness of the implementation. \\
 
 Finally, it is noteworthy to mention that \texttt{sPyNNaker} provides a way of collecting monitoring data from simulations. For instance, it counts the number of packets dropped by the network or by an overloaded core, which will be some valuable information for the evaluation section that follows.
-
-%
-%Can inspect the machine post-execution, so you know if you dropped some packets at some point. Guaranties you have the right results if no such error message
-%
-%Routing / chip, so if you make sure each Page Rank vertex is connected to at least another vertex on each of the 4 chips, you maximise the number of packets sent. Robustness tests (and everything in the evaluation section to follow) ran with 10 edges per vertex, ensuring an overwhelming probability that all nodes will be connected to another node of each chip.
-%
-%TODOs:
-%	Exploited graph processing bencharmarks. However, they rely on generic graph processing algorithms whereas we can only run Page Rank for now.

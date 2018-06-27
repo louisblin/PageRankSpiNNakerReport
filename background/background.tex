@@ -1,12 +1,5 @@
 \section{Background} \label{sec:bg}
 
-%%% CRITERIA - How do the project fits in with the current state of the art?
-% - existing work in the area? 
-% - how this informs their project? 
-% - cite the relevant papers/documents/reports/books/urls in the report? 
-% - why they're doing the work and do they know their target audience or user?
-%%%
-
 This project investigates the potential of SpiNNaker on alternative applications, so this background section will provide the reader with a thorough understanding of neuromorphic computing and how it gave birth to SpiNNaker (section \ref{sec:nmc}). Then, we will focus on the specification of the SpiNNaker machine, from its hardware properties to the existing software stack that lets us harness its potential (section \ref{sec:smc}). Finally, we will review how the machine can be used to run spiking neural network simulations, which was the goal application of their designers. We will also see how alternative applications have been exploring the potential of SpiNNaker and use it as an inspiration for our own implementation of Page Rank (section \ref{sec:usage}).
 
 \subsection{Neuromorphic computing} \label{sec:nmc}
@@ -30,49 +23,19 @@ On the European side, the Human Brain Project (HBP) was launched with a spectacu
         \caption{BrainScaleS supercomputer (image from \cite{nmp}).}
         \label{fig:brainscales}
     \end{subfigure}%
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc.
-      %(or a blank line to force the subfigure onto a new line)
+    ~
     \begin{subfigure}[b]{0.53\textwidth}
         \includegraphics[width=\textwidth]{figures/spinnaker106.jpg}
         \caption{SpiNNaker supercomputer (image from \cite{nmp}).}
         \label{fig:spinnaker106}
     \end{subfigure}
-%    \caption{Pictures of animals}
-%    \label{fig:animals}
 \end{figure} 
 
 These two machines explore two different approaches to building a neuromorphic silicon brain. The BrainScaleS system is arguably the most neuromorphic approach, as it is based on the physical emulation of neurons using analogue and mixed-signals. Thus, there is no source code that the machine would execute step by step as in a von Neumann architecture computer. Rather, the system evolves according to the physical properties of the machine, running ten thousand times faster than a human brain would \cite{hw}. This means a day worth of real human brain training can be compacted in slightly over a minute, which drastically speeds up the workflow of neuroscientists experimenting with the machine. On a similar topic, it also seems noteworthy to mention Intel's Loihi \cite{loihi}, the state-of-the-art neuromorphic chip released in 2018, using an approach comparable to BrainScaleS, and that claims to outperform all existing hardware in its field. \\
 
 Although this approach is faithful to the biology and is extremely energy efficient, it implements a fixed neuronal and synaptic model which restricts model exploration. This is why a second approach was taken with SpiNNaker, a neuromorphic computer of another kind where any neuronal and synaptic model could be implemented. As we use this machine for the project, we dedicate the next section to covering it in greater details. \\
 
-
-%Over the years, distributed systems have become an evermore-essential tool for CPU-intensive applications. With the size of all the data available on the Internet currently doubling each two years, the processing power needs to follow a similar trend. For CPU-bound problems, scaling on distributed systems has been easier than for their IO-bound siblings. Inter-node communication in computer clusters is becoming the bottleneck for all these problems and the matter has received attention from the research community. From hot spot analysis in large scale shared memory multiprocessors \cite{hotspot}, to communication type \cite{perfcomp} and efficiency \cite {comm-eff} investigations, multiple attempts to optimise existing systems have been tried. \\
- 
-%However, another trend has emerged and tackles this issue in a radically different manner.
-
-% Hot spot analysis in large scale shared memory multiprocessors
-%-- [http://ieeexplore.ieee.org/document/1263548/]
-
-% Performance bottlenecks on large-scale shared-memory multiprocessors
-%-- [http://www-vlsi.stanford.edu/people/alum/pdf/0412_Kunz_FLASH.pdf]
-
-% Performance Comparison of Message Passing and Shared Memory Programming with HPC Benchmarks
-%-- [https://static.epcc.ed.ac.uk/dissertations/hpc-msc/2006-2007/0773421-27d-d07rep1.3.pdf]
-
-% Distributed optimization for shared state systems: Applications to decentralized freeway control via subnetwork splitting
-%-- [http://ieeexplore.ieee.org/document/7172081/]
-
-% D-ADMM: A Communication-Efficient Distributed Algorithm for Separable Optimization
-%-- [http://ieeexplore.ieee.org/document/6484993/]
-
-% Asynchronous Distributed ADMM for Large-Scale Optimization—Part I: Algorithm and Convergence Analysis
-%-- [http://ieeexplore.ieee.org/document/7423789/]
-
-
-
 \subsubsection{SpiNNaker}
-
-%With the Moore's Law historically exponential progress which is now slowing down and transistors that are reaching physical boundaries on how small they can be, other approaches have been attempted. In particular, brain-inspired computing \cite{bic} has received some attention over the past decades and some major initiatives in the field have been launched. The most significant one is the \euro{} 1B Flagship Human Brain Project of the EU, which aims to take the leadership of world research in neurmorphic simulations. Amongst the pillars of that project, it was essential to build a novel type of brain-inspired hardware that would be fit to run simulations of spiking neural networks. This is when the SpiNNaker project was born with a two-fold goal. Firstly, it should provide "a platform for high-performance massively parallel processing appropriate for the simulation of large-scale neural networks in real-time, as a research tool for neuroscientists, computer scientists and roboticists" \cite{SpiNNaker-Project}. Second, it should investigate how this brain-inspired novel architecture design could lead to new opportunities for massively-parallel computing. The hope is that areas other than neuroscience could benefit from the contribution SpiNNaker is making, which is precisely what we will be investigating.\\
 
 Although the Human Brain Project \cite{hbp} was launched in 2013 with the EU funding, the SpiNNaker project had already started back in 2005. At the time, it was backed by the \textit{Engineering and Physical Sciences Research Council} (EPSRC), the main agency funding research initiatives in engineering and physics in the United Kingdom (UK). \\
 
@@ -124,8 +87,6 @@ After the success of the first Spin1 board, this new release from 2011 was mainl
 
 Later in 2011, Spin3 was released after a few minor modifications to Spin2. The novelty of the board was to be general purpose, which made it the first usable SpiNNaker neuromorphic PCB for the research community. The surface of the board was also reduced by a factor of three, from $15 \times 15 = 225cm^2$ down to $8 \times 9 = 72cm^2$, to make it possible to fit it on a small robot. The design also got rid of all the hardware support for testing: BGA socket, power consumption monitoring, USB interface, reduced JTAG interface, reduced LED support per chip. Additionally, the number of SpiNNaker link connectors was also brought down to 2 as this board was not intended for large clusters of connected boards but rather for prototyping; see Fig.~\ref{fig:spin3}.
 
-%\vspace*{-0.1cm}
-
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/spin3-schema.png}
@@ -146,7 +107,6 @@ Later in 2011, Spin3 was released after a few minor modifications to Spin2. The 
 \end{wrapfigure}
 
 Finally, an ultimate version of the board was made to scale \textit{out} the previous design. At this stage, SpiNNaker chips had demonstrated they were functional so the main focus was to fit 48 chips on the same board. As a matter of fact, the ultimate goal of the project was to combine 1200 such boards and doing so would result in the million-core neuromorphic computer targeted. Indeed, $1200 \times 48 \textnormal{ chips } \times  18 \textnormal{ cores } \approx 1M \textnormal{ cores}$ and each core is expected to simulate a thousand neurons, which gives the expected one billion neurons real time simulation (and one million neurons per Spin4 PCB, see Fig.~\ref{fig:spin4}). As of today, the University of Manchester runs the largest version of the SpiNNaker machine with 500K cores, although they plan on expanding it over the coming months to reach the million of cores \cite{act-project-access}. \\ % TODO: don't we say they have a million somewhere? 
-% Then, each SpiNNaker chip is mounted by group of 48 as an hexagonal array on a printed circuit board, which are then mounted as 24-board cages. The full SpiNNaker machine will be composed of 10 cabinets of 5 cages each, giving the expected $18\textnormal{cores} \times 48 \textnormal{chips} \times 24 \textnormal{board} \times 5 \times 10 = 1,036,800 $ processor cores.
  
 Regarding power usage, the peak consumption of the Spin4 board was of 75W for a real time simulation of a million neurons \cite{dev-process}. As a comparison, IBM's TrueNorth chip, which has a design closer of BrainScaleS than SpiNNaker, is able to simulate one million neurons as well but only consumes 65mW of power while running a typical computer vision problem \cite{truenorthpaper}. But as BrainScaleS, TrueNorth has a physical model approach (see section \ref{sec:hbp}) so the power consumption comparison is probably unfair. Comparing SpiNNaker with the Sunway TaihuLight in China is probably fairer. It is now the second biggest supercomputer in the world (after newly released Summit stole the title on June 8th 2018 \cite{summit}) and number 20 on the GREEN500 list (top 500 supercomputers ranked by energy efficiency) \cite{green500}. The Sunway TaihuLight has 10,649,600 cores running at 1.45GHz for a power consumption of 15,371 kW \cite{top500} while SpiNNaker has 1,036,800 cores running at 0.2GHz for a power consumption of 75kW \cite{spinnaker}. By using an (approximative) performance per watt measure (usually in FLOPS/watts), we compute the ratio of the computer power (in GHz) over the power consumption (in kW), we find SpiNNaker more energy efficient by factor of 2.8:
 
@@ -250,7 +210,6 @@ Each core has its own communications controller that is responsible for formatti
 \item \textbf{Fixed-route (FR)} packet, unicast transmission with the host system.
 
 \textit{Usage}: to move debugging data from a core back to the host machine.
-
 \end{itemize}
 
 
@@ -273,8 +232,6 @@ Any developer for SpiNNaker will mostly be interested in Multicast (MC) routing 
 \end{figure}
 
 As mentioned earlier, it is a 72-bit data frame where the routing key and the payload take up 32 bits each. Additionally, there are eight more bits of metadata that are used for management. The first two bits define the type of packet sent: \texttt{00} for MC, \texttt{01} for P2P, \texttt{10} for NN, \texttt{11} for FR. Then, the next two bits for emergency routing are stateful and can change depending on routing conditions. If a link fails or becomes congested at run time, this additional information will be updated and will help the local router find alternative routes. Then, the next two bits encode a global cycling four-step time stamp that is set by the packet sender. It allows late packets to be detected and dropped to ensure no \textit{errant packet} stays indefinitely in the network. Then, the payload bit signals if the packet has a payload or not. Finally, a parity bit is used to check for transmission errors. \\
-
-% This design mimics how neurons fire action potentials, also called "spike" for the sake of simplicity. Each of these data packets is 40 bits long, the first 32 b being the source neuron AER identifier while the last 8 b are used for management. AER is the Address Event Representation which is a widely accepted encoding to describe neural activity and how information is exchanged between neuromorphic hardware-based neurons \cite{aer}. This design lets a single SpiNNaker core process up to 5 million connections/s. \cite{spinnaker} \\
 
 Now that the physical components of SpiNNaker have been described, let us focus on the dense software stack that make this powerful tool usable.
 
@@ -324,7 +281,7 @@ All in all, the software stack of the host machine piles up relatively high, and
 \begin{figure}[hbtp]
 \centering
 \includegraphics[width = 1\hsize]{figures/ybug.png}
-\caption{Application loading using \textit{ybug} (image from \cite{ybug}).} % Check image ref
+\caption{Application loading using \textit{ybug} (image from \cite{ybug}).}
 \label{fig:ybug}
 \end{figure}
 
